@@ -2,6 +2,7 @@
 
 namespace Codeception\Extension;
 
+use Codeception\Subscriber\ConsoleBuffer;
 use Symfony\Component\EventDispatcher\Event;
 use Codeception\Event\FailEvent;
 use Codeception\Event\StepEvent;
@@ -65,9 +66,13 @@ class TeamCity extends BaseExtension
 	public function onFail(FailEvent $e)
 	{
 		$exception = $e->getFail();
+
+		$consolePrint = new ConsoleBuffer($this->options);
+		$consolePrint->printFail($e);
+
 		$params = [
 			'message' => $exception->getMessage(),
-			'details' => $exception->getTraceAsString(),
+			'details' => $consolePrint->fetch(),
 		];
 		if ($exception instanceof \PHPUnit_Framework_ExpectationFailedException) {
 			$comparisonFailure = $exception->getComparisonFailure();
