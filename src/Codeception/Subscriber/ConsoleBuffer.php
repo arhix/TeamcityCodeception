@@ -2,8 +2,8 @@
 namespace Codeception\Subscriber;
 
 use Codeception\Lib\Console\MessageBuffer;
-use Codeception\Util\Debug;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Helper\FormatterHelper;
 
 class ConsoleBuffer extends Console
 {
@@ -12,9 +12,7 @@ class ConsoleBuffer extends Console
 		parent::__construct($options);
 
 		$this->output = new BufferedOutput($options);
-		if ($this->debug) {
-			Debug::setOutput($this->output);
-		}
+		$this->output->formatHelper = new FormatterHelper();
 	}
 
 	public function fetch()
