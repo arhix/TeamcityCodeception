@@ -2,7 +2,7 @@
 namespace Codeception\Subscriber;
 
 use Codeception\Lib\Console\MessageBuffer;
-use Symfony\Component\Console\Output\BufferedOutput;
+use Codeception\Lib\Console\BufferedOutput;
 use Symfony\Component\Console\Helper\FormatterHelper;
 
 class ConsoleBuffer extends Console
