@@ -1,9 +1,9 @@
 <?php
 namespace Codeception\Lib\Console;
 
-use Symfony\Component\Console\Output;
+use Symfony\Component\Console\Output as SymfonyConsoleOutput;
 
-class BufferedOutput extends Output\BufferedOutput
+class BufferedOutput extends SymfonyConsoleOutput\BufferedOutput
 {
 	public function isInteractive()
 	{
