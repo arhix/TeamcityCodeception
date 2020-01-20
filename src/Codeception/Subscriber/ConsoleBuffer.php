@@ -4,6 +4,7 @@ namespace Codeception\Subscriber;
 use Codeception\Lib\Console\MessageBuffer;
 use Codeception\Lib\Console\BufferedOutput;
 use Symfony\Component\Console\Helper\FormatterHelper;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class ConsoleBuffer extends Console
 {
@@ -11,7 +12,8 @@ class ConsoleBuffer extends Console
 	{
 		parent::__construct($options);
 
-		$this->output = new BufferedOutput($options);
+		$verbosity = isset($options['verbosity']) ? (int) $options['verbosity'] : OutputInterface::VERBOSITY_NORMAL;
+		$this->output = new BufferedOutput($verbosity);
 		$this->output->formatHelper = new FormatterHelper();
 	}
 
